@@ -70,12 +70,30 @@
 
             this.todayCalorie = this.todayMinusCalorie - this.todayPlusCalorie
 
+            // 貯金が50より高い場合のメッセージ
+            let god_list = ["いい感じに貯金が貯まってきましたね！無理をせずこの調子で頑張っていきましょう!",
+                            "かなり順調に貯金が貯まってきています！その調子です！",
+                            "素晴らしいです！とても頑張っていますね！このまま自分が満足するまで貯金を貯めていきましょう！"
+                        ]
+            let bad_list = ["貯金がマイナスになってしまいましたね。こんな時は運動する量を増やしたり、食事を見直してみたりしましょう。",
+                            "貯金が無くなりました。きついかもしれませんがまずは運動や食事の見直しから始めていきましょう。",
+                            "最近少し食生活や運動が緩みがちではありませんか？これからも頑張りしょう。"
+                        ]
+            // ランダム関数
+            let random
+            // list配列の最大値と最小値
+            let min = 0
+            let max = 2
             if (this.totalCalorie>50){
-                this.comment = "いい感じに貯金が貯まってきましたね！無理をせずこの調子で頑張っていきましょう。"
+                random = Math.floor(Math.random() * (max + 1 - min)) + min
+                // this.comment = "いい感じに貯金が貯まってきましたね！無理をせずこの調子で頑張っていきましょう!" + "ここで豆知識です。" + list[random]
+                this.comment = god_list[random]
             }else if (this.totalCalorie>=0){
                 this.comment = "今日も一日頑張っていきましょう！"
             } else{
-                this.comment = "貯金がマイナスになってしまいましたね。こんな時は運動する量を増やしたり、食事を見直してみたりしましょう！"
+                random = Math.floor(Math.random() * (max + 1 - min)) + min
+                // this.comment = "貯金がマイナスになってしまいましたね。こんな時は運動する量を増やしたり、食事を見直してみたりしましょう！"
+                this.comment = bad_list[random]
             }
         },
         mounted () {
