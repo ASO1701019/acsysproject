@@ -7,8 +7,8 @@
                 <li class="list-group-item list-group-item-info lead">ー摂取カロリー：{{todayPlusCalorie}}kcal</li>
                 <li class="list-group-item list-group-item-danger lead">＋消費カロリー：{{todayMinusCalorie}}kcal</li>
                 <li class="list-group-item  mb-4 lead">{{comment}}</li>
-                <a class="btn btn-outline-info btn-lg mb-4 " href="/#/intakecalorie" role="button">摂取カロリー登録 ー</a>
-                <a class="btn btn-outline-danger btn-lg mb-4" href="/#/consumptioncalorie" role="button">消費カロリー登録 ＋</a>
+                <a class="btn btn-outline-info btn-lg mb-4 " href="/intakecalorie" role="button">摂取カロリー登録 ー</a>
+                <a class="btn btn-outline-danger btn-lg mb-4" href="/consumptioncalorie" role="button">消費カロリー登録 ＋</a>
             </ul>
             <div class="chart-small col-lg-6 col-auto">
                 <SaveCalorieChart :chart-data="dataCollection" :options="dataOptions"></SaveCalorieChart>

@@ -36,7 +36,7 @@
         </div>
         <div class="row">
             <button @click="openInputModal" class="btn btn-outline-info col-lg-2 col-auto">入力して追加する</button>
-            <button @click="openSelectModal" class="btn btn-outline-primary col-lg-2 col-auto ml-3">選択して追加する</button>
+<!--            <button @click="openSelectModal" class="btn btn-outline-primary col-lg-2 col-auto ml-3 disabled">選択して追加する</button>-->
             <button class="btn btn-outline-success col-lg-2 col-3 ml-auto" @click="enterInformation">決定</button>
         </div>
 

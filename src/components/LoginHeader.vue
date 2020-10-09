@@ -1,16 +1,16 @@
 <template>
     <div>
         <b-navbar toggleable="lg" variant="dark" type="dark">
-            <a class="navbar-brand " href='/#/savecalorie'>
+            <a class="navbar-brand " href='/savecalorie'>
                 <img src="../../public/favicon.png" width="35" height="35" class="d-inline-block align-top" alt="penguin">
                 acsys</a>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
-                        <b-nav-item href="/#/calendar">カレンダー</b-nav-item>
-                        <b-nav-item href="/#/statistics">統計</b-nav-item>
-                        <b-nav-item href="/#/training">トレーニング</b-nav-item>
+                        <b-nav-item href="/calendar">カレンダー</b-nav-item>
+                        <b-nav-item href="/statistics">統計</b-nav-item>
+                        <b-nav-item href="/training">トレーニング</b-nav-item>
                 </b-navbar-nav>
 
                 <b-navbar-nav class="ml-auto">
@@ -20,8 +20,8 @@
                             <em>{{userName}}</em>
 <!--                            Apiで名前の取得-->
                         </template>
-                        <b-dropdown-item href="/#/userchange">登録情報の変更</b-dropdown-item>
-                        <b-dropdown-item @click="openModal">ログアウト</b-dropdown-item>
+                        <b-dropdown-item href="/userchange">登録情報の変更</b-dropdown-item>
+                        <b-dropdown-item @click="openModal"><span class="text-danger">ログアウト</span></b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
 

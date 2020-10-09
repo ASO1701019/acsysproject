@@ -36,7 +36,7 @@
         </div>
         <div class="row">
             <button @click="openInputModal" class="btn btn-outline-info col-lg-2 col-auto">入力して追加する</button>
-            <button @click="openSelectModal" class="btn btn-outline-primary col-lg-2 col-auto ml-3">選択して追加する</button>
+<!--            <button @click="openSelectModal" class="btn btn-outline-primary col-lg-2 col-auto ml-3">選択して追加する</button>-->
             <button @click="enterInformation" class="btn btn-outline-success col-lg-2 col-3 ml-auto">決定</button>
         </div>
 
@@ -83,16 +83,11 @@
                 <!-- /default -->
                 <!-- footer スロットコンテンツ -->
                 <template slot="footer">
-                    <button v-b-modal.modal-multi-2 class="btn btn-outline-secondary">キャンセル</button>
+                    <button @click="closeSelectModal" class="btn btn-outline-secondary">キャンセル</button>
                 </template>
                 <!-- /footer -->
             </inputMyModal>
         </div>
-
-        <b-modal id="modal-multi-2" title="Second Modal" ok-only>
-            <p class="my-2">Second Modal</p>
-            <b-button v-b-modal.modal-multi-3 size="sm">Open Third Modal</b-button>
-        </b-modal>
 
         <div class="example-modal-window">
             <!-- コンポーネント MyModal -->
@@ -120,11 +115,6 @@
                 </template>
                 <!-- /footer -->
             </inputMyModal>
-            <b-button v-b-modal.modal-tall>Launch overflowing modal</b-button>
-
-            <b-modal id="modal-tall" title="Overflowing Content">
-
-            </b-modal>
         </div>
 
     </div>
@@ -182,19 +172,19 @@
             openInputModal(){
                 this.inputModal = true
             },
-            //直接入力のモーダルを開く
+            //選択入力のモーダルを開く
             openSelectModal(){
                 this.selectModal = true
             },
-            //直接入力のモーダルを閉じる
+            //選択入力のモーダルを閉じる
             closeSelectModal() {
                 this.selectModal = false
             },
-            //直接入力のモーダルを開く
+            //選択入力のモーダルを開く
             openFoodSelectModal(){
                 this.selectFoodModal = true
             },
-            //直接入力のモーダルを閉じる
+            //選択入力のモーダルを閉じる
             closeFoodSelectModal() {
                 this.selectFoodModal = false
             },

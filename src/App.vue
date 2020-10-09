@@ -1,3 +1,13 @@
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-178757623-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-178757623-1');
+</script>
+
 <template>
   <div>
 <!--  headerの設定-->
@@ -24,11 +34,12 @@
 </script>
 
 <style>
-    /*アニメーションの設定*/
-  .v-enter-active, .v-leave-active {
-      transition: opacity .3s;
-  }
-  .v-enter, .v-leave-to {
-      opacity: 0;
-  }
+    /*.transition-enter,*/
+    /*.transition-leave-to {*/
+    /*    opacity: 0;*/
+    /*}*/
+    /*.transition-enter-active,*/
+    /*.transition-leave-active {*/
+    /*    transition: opacity 1s;*/
+    /*}*/
 </style>
