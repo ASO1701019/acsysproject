@@ -12,6 +12,7 @@ import Calender from  "../components/Calendar"
 import Training from "../components/Training"
 import Statistics from "../components/Statistics"
 import UserChange from "../components/UserChange"
+import PasswordChange from "../components/PasswordChange"
 import NotFound from "../components/NotFound";
 
 // store
@@ -92,6 +93,12 @@ const router = new Router({
             path: "/userchange",
             name: "userchange",
             component: UserChange,
+        },
+        {
+            //パスワード再設定
+            path: "/passwordchange",
+            name: "passwordchange",
+            component: PasswordChange,
         },
         {
             //更新情報

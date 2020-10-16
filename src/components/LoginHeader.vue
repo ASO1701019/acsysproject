@@ -21,7 +21,7 @@
 <!--                            Apiで名前の取得-->
                         </template>
                         <b-dropdown-item href="/userchange">登録情報の変更</b-dropdown-item>
-                        <b-dropdown-item href="/passwordchange">登録情報の変更</b-dropdown-item>
+                        <b-dropdown-item href="/passwordchange">パスワード再設定</b-dropdown-item>
                         <b-dropdown-item @click="openModal"><span class="text-danger">ログアウト</span></b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-navbar-nav>

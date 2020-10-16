@@ -451,7 +451,7 @@
         },created() {
             //すでにトークンがある場合
             if (this.$store.state.accountToken) {
-                this.$router.replace("/savecalorie")
+                this.$router.replace("/passwordchange")
             }
         }
     }
