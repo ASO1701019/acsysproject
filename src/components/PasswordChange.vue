@@ -42,10 +42,16 @@
                     account_old_pass: "",
                     account_new_pass: "",
                     account_con_new_pass: "",
-                }
+                },
+                errors:[],
+
+                OldPasswordResult: "",
+                NewPasswordResult: "",
+                ConNewPasswordResult: ""
+
             }
         },methods: {
-            checkHandler: function (event) {
+            checkHandler: function (form, event) {
                 this.checkForm(event);
             },
 
@@ -57,41 +63,42 @@
                 let ConNewPass
                 let re3 = /^[A-Za-z0-9]+$/
 
-
-
                 //現在のパスワードのバリデーション
                 if (!this.form.account_old_pass) {
                     this.OldPasswordResult = "パスワードを入力してください"
-                    console.log(this.OldPasswordResult)
                     this.errors.push(this.OldPasswordResult)
                     OldPass = false
-                } else if(this.account_old_pass != this.account_pass){
-                    this.OldPasswordResult = "現在のパスワードと一致しません。"
-                    console.log(this.OldPasswordResult)
+                }else if(this.form.account_old_pass.length > 128){
+                    this.OldPasswordResult = "パスワードの文字数オーバー"
+                    this.errors.push(this.OldPasswordResult)
+                    OldPass = false
                 }else{
                     OldPass = true
                     this.OldPasswordResult = ""
                 }
 
-
                 // 新しいパスワードのバリデーション
-                if(this.account_old_pass === this.account_new_pass){
-                    this.NewPasswordResult = "前のパスワードと別のパスワードを入力してください。"
-                    console.log(this.NewPasswordResult)
+                if(!this.form.account_new_pass){
+                    this.NewPasswordResult = "新しいパスワードを入力してください"
+                    this.errors.push(this.NewPasswordResult)
+                    NewPass = false
+                }
+                else if(this.form.account_old_pass === this.form.account_new_pass){
+                    this.NewPasswordResult = "前のパスワードと別のパスワードを入力してください"
+                    this.errors.push(this.NewPasswordResult)
+                    NewPass = false
                 }
                 else if(!re3.test(this.form.account_new_pass)){
                     console.log("パスワードに使用できない文字、もしくは全角が含まれています")
                     this.NewPasswordResult = "パスワードに使用できない文字、もしくは全角が含まれています"
                     this.errors.push(this.NewPasswordResult)
-                    OldPass = false
+                    NewPass = false
                 }else if(this.form.account_new_pass.length < 6){
                     this.NewPasswordResult = "パスワードの文字数が少ないです"
-                    console.log(this.NewPasswordResult)
                     this.errors.push(this.NewPasswordResult)
                     NewPass = false
                 }else if(this.form.account_new_pass.length > 128){
                     this.NewPasswordResult = "パスワードの文字数オーバー"
-                    console.log(this.NewPasswordResult)
                     this.errors.push(this.NewPasswordResult)
                     NewPass = false
                 }else{
@@ -101,8 +108,13 @@
 
 
                 // 新しいパスワード確認のバリデーション
-                if(this.account_new_pass != this.account_con_new_pass){
-                    this.ConNewPasswordResult = "新しいパスワードとパスワード確認が一致しません。"
+                if(!this.form.account_con_new_pass){
+                    this.ConNewPasswordResult = "もう一度入力してください"
+                    this.errors.push(this.ConNewPasswordResult)
+                    ConNewPass = false
+                }
+                else if(this.form.account_new_pass !== this.form.account_con_new_pass){
+                    this.ConNewPasswordResult = "新しいパスワードとパスワード確認が一致しません"
                     NewPass = false
                 }else{
                     ConNewPass = true
@@ -111,16 +123,40 @@
 
                 // バリデーションをクリアした時にパスワード更新
                 if(OldPass === true && NewPass === true && ConNewPass === true){
-                    const check = await this.Data_post(this.from)
-                    if(check != 0){
-                        // パスワード更新完了時
-                        await this.$router.replace("/savecalorie")
-                        alert("パスワードが更新されました！")
-                    }else{
-                        // エラー時
-                        console.log("バリデーションチェックが通らなかった、又はエラー")
-                        alert("変更ができませんでした。。もう一度やり直してください")
+
+                    // APIと通信
+                    const URL = "https://fat3lak1i2.execute-api.us-east-1.amazonaws.com/acsys/users/pass/change"
+                    const post_data={
+                        account_token:this.$store.state.accountToken,
+                        current_pass:this.form.account_old_pass,
+                        new_pass:this.form.account_new_pass,
                     }
+                    const json_data = JSON.stringify(post_data)
+                    await fetch(URL,{
+                        mode:'cors',
+                        method:'POST',
+                        body:json_data,
+                        headers:{'Content-type':'application'},
+                    })
+                        .then(function (response) {
+                            return response.json()
+                        })
+                        .then(data => {
+                            const flg_data = data['isSuccess']
+                            if(flg_data){
+                                console.log('パスワード変更ok')
+                                this.loginResult = true
+                                //topへ
+                                this.$router.replace("/savecalorie")
+                            }else {
+                                console.log('パスワード変更ng')
+                                //パスワードが違う
+                                alert("入力されたパスワードが間違っています")
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error)
+                        })
                 }
 
 
