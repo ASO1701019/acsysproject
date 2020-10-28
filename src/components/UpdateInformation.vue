@@ -15,7 +15,18 @@
                 </div>
             </div><!-- /.row -->
             <hr>
-            <div class="row mb-3">
+            <div class="row mb-4">
+                <div class="col-3 lead">
+                    9月29日
+                </div>
+                <div class="col lead">
+                    Topページのデザインを変更しました。<br>
+                    更新情報を追加しました。<br>
+                    <span class="text-danger mt-3">使えなくなる機能があります！！</span><br>
+                    現在カロリーでの選択入力を使えなくしています。もっと使いやすくなるように改善しますのでもうしばらくお待ちください。
+                </div>
+            </div><!-- /.row mb-3 -->
+            <div class="row mb-4">
                 <div class="col-3 lead">
                     9月17日
                 </div>
@@ -25,7 +36,7 @@
                     <a href="https://twitter.com/acsys_calorie">Twitterアカウントはこちら</a>
                 </div>
             </div><!-- /.row mb-3 -->
-            <div class="row mb-3">
+            <div class="row mb-4">
                 <div class="col-3 lead">
                     8月20日
                 </div>
@@ -42,7 +53,7 @@
                     ・統計機能でリストにある貯金の表示ミスを修正しました。
                 </div>
             </div><!-- /.row mb-3 -->
-            <div class="row mb-3">
+            <div class="row mb-4">
                 <div class="col-3 lead">
                     8月14日
                 </div>
