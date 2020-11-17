@@ -17,6 +17,14 @@
             <hr>
             <div class="row mb-4">
                 <div class="col-3 lead">
+                    11月4日
+                </div>
+                <div class="col lead">
+                    サーバーのログが取れていない問題を解決しました。<br>
+                </div>
+            </div><!-- /.row mb-4 -->
+            <div class="row mb-4">
+                <div class="col-3 lead">
                     10月31日
                 </div>
                 <div class="col lead">
