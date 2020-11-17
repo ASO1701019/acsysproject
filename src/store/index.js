@@ -16,6 +16,9 @@ export default new Vuex.Store({
         accountWeight:'',
         accountActiveLevel:'',
         accountStartDay:'',
+        intakeCalorie:'',
+        consumptionCalorie:'',
+        calorie:'',
     },
 
     mutations:{
