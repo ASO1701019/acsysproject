@@ -9,13 +9,12 @@
                 <li class="list-group-item  mb-4 lead">{{comment}}</li>
                 <a class="btn btn-outline-info btn-lg mb-4 " href="/intakecalorie" role="button">摂取カロリー登録 ー</a>
                 <a class="btn btn-outline-danger btn-lg mb-4" href="/consumptioncalorie" role="button">消費カロリー登録 ＋</a>
-            </ul>
+            </ul><!-- /.ul -->
             <div class="chart-small col-lg-6 col-auto">
                 <SaveCalorieChart :chart-data="dataCollection" :options="dataOptions"></SaveCalorieChart>
-            </div>
-        </div>
-
-    </div>
+            </div><!-- /.div -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
 </template>
 
 <script>
@@ -43,7 +42,7 @@
             }
         },
         async created() {
-
+            //カロリーデータ取得
             const URL = "https://fat3lak1i2.execute-api.us-east-1.amazonaws.com/acsys/users/calorie"
             this.dataGet={
                 account_token:this.$store.state.accountToken
@@ -68,8 +67,10 @@
                     alert("エラーが発生しました。もう一度やり直してください")
                 })
 
+            //貯金を求める
             this.todayCalorie = this.todayMinusCalorie - this.todayPlusCalorie
 
+            //コメント
             if (this.totalCalorie>50){
                 this.comment = "いい感じに貯金が貯まってきましたね！無理をせずこの調子で頑張っていきましょう。"
             }else if (this.totalCalorie>=0){
@@ -82,6 +83,7 @@
             this.fillData()
         },
         methods: {
+            //グラフ
             fillData () {
                 this.dataCollection = {
                     labels: ['＋ 消費カロリー', 'ー 摂取カロリー'],
