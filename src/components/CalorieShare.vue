@@ -1,14 +1,13 @@
 <template>
     <div id="twitter_share" class="container">
-        <div class="text-success mt-5 mb-3 text-center h1 font-weight-bold">
+        <div class="text-success mt-4 mb-4 text-center h2 font-weight-bold">
             Twitterにシェア
         </div>
         <form>
             <div>
-                <h4 class="text-success border-bottom border-success mb-5 col-11 text-left mx-auto">投稿内容</h4>
                 <span class="form-group row mx-auto">
                     <label for="detail" class="col-sm-3  col-form-label text-right col-auto" >SNSで共有する内容</label>
-                    <input type="text" class="col-sm-7 col-auto form-control ml-xs-5 " id="detail" maxlength="280" v-model="TweetDetail">
+                    <textarea class="col-sm-9 col-auto form-control ml-xs-5 " id="detail" rows="5" maxlength="280" v-model="TweetDetail"></textarea>
                 </span>
             </div>
             <div class="form-group col text-center">
