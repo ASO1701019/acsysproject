@@ -17,6 +17,14 @@
             <hr>
             <div class="row mb-4">
                 <div class="col-3 lead">
+                    11月17日
+                </div>
+                <div class="col lead">
+                    Twitterカードが表示されるようになりました！<br>
+                </div>
+            </div><!-- /.row mb-4 -->
+            <div class="row mb-4">
+                <div class="col-3 lead">
                     11月4日
                 </div>
                 <div class="col lead">
