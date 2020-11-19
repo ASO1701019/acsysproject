@@ -15,11 +15,10 @@ import Statistics from "../components/Statistics"
 import UserChange from "../components/UserChange"
 import NotFound from "../components/NotFound";
 import CalorieShare from "../components/CalorieShare";
+import UpdateInformation from "../components/UpdateInformation";
 
 // store
 import Store from '../store/index'
-import UpdateInformation from "../components/UpdateInformation";
-
 
 Vue.use(Router)
 
@@ -29,7 +28,7 @@ const router = new Router({
     routes: [
         {
             //Topページ
-            //ログイン前にある際とはmetaを追加する
+            //ログイン前にあるサイトはmetaを追加する
             path: '/',
             name: 'StartTop',
             component: StartTop,
@@ -120,6 +119,7 @@ const router = new Router({
     ]
 })
 
+//Googleアナリティクスの設定
 Vue.use(VueAnalytics, {
     id: 'UA-178757623-1',
     router
