@@ -251,6 +251,8 @@
                 let re1 = /^[A-Za-z0-9][A-Za-z0-9_.-]*@[A-Za-z0-9_.-]+\.[A-Za-z0-9]+$/
                 let re2 = /^[0-9]+$/
                 let re3 = /^[A-Za-z0-9]+$/
+                let date = (new Date(this.form.account_year,this.form.account_month,0))
+                let EndDay = date.getDate() + 1
 
                 // メールアドレスの入力フォームのバリデーション
                 if (!this.form.account_address) {
@@ -347,7 +349,7 @@
                     SignBirthDay = false
                 }
                 else if (!(this.form.account_year > 1899 && this.form.account_year < 2021)){
-                    this.SignupValidation.SignupBirthdayResult = "年：年数制限オーバー"
+                    this.SignupValidation.SignupBirthdayResult = "年：年数制限エラー"
                     console.log(this.SignupValidation.SignupBirthdayResult)
                     this.errors.push(this.SignupValidation.SignupBirthdayResult)
                     SignBirthDay = false
@@ -359,7 +361,7 @@
                     SignBirthDay = false
                 }
                 else if (!(this.form.account_month > 0 && this.form.account_month < 13)){
-                    this.SignupValidation.SignupBirthdayResult = "月：月数制限オーバー"
+                    this.SignupValidation.SignupBirthdayResult = "月：月数制限エラー"
                     console.log(this.SignupValidation.SignupBirthdayResult)
                     this.errors.push(this.SignupValidation.SignupBirthdayResult)
                     SignBirthDay = false
@@ -369,8 +371,8 @@
                     console.log(this.SignupValidation.SignupBirthdayResult)
                     this.errors.push(this.SignupValidation.SignupBirthdayResult)
                     SignBirthDay = false
-                }else if (!(this.form.account_day > 0 && this.form.account_day < 32)){
-                    this.SignupValidation.SignupBirthdayResult = "日：日数制限オーバー"
+                }else if (!(this.form.account_day > 0 && this.form.account_day < EndDay )){
+                    this.SignupValidation.SignupBirthdayResult = "日：日数制限エラー"
                     console.log(this.SignupValidation.SignupBirthdayResult)
                     this.errors.push(this.SignupValidation.SignupBirthdayResult)
                     SignBirthDay = false
