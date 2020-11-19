@@ -8,6 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 
     state: {
+        //ユーザー情報
         accountToken:'',
         accountName:'ユーザー',
         accountBirthDay:'',
@@ -16,15 +17,18 @@ export default new Vuex.Store({
         accountWeight:'',
         accountActiveLevel:'',
         accountStartDay:'',
+        //Twitter投稿用カロリー情報
         intakeCalorie:'',
         consumptionCalorie:'',
         calorie:'',
     },
 
     mutations:{
+        //トークン登録又は更新
         tokenUpdate(state,newToken){
             state.accountToken = newToken
         },
+        //ユーザー情報の削除
         tokenDelete(state){
             state.accountToken = ""
             state.accountName = "ユーザー"
@@ -33,7 +37,11 @@ export default new Vuex.Store({
             state.accountHeight = ""
             state.accountWeight = ""
             state.accountActiveLevel = ""
+            state.calorie = ""
+            state.intakeCalorie = ""
+            state.consumptionCalorie = ""
         },
+        //ユーザー取得又は更新
         accountUpdate(state,data){
             state.accountName = data.name
             state.accountBirthDay = data.birthday
@@ -43,6 +51,12 @@ export default new Vuex.Store({
             state.accountActiveLevel = data.activlevel
             state.accountStartDay = data.startday
         },
+        //カロリー情報の取得
+        calorieAdd(state,data){
+            state.calorie = data.userCalorie
+            state.intakeCalorie = data.userintakeCalorie
+            state.consumptionCalorie = data.userconsumptionCalorie
+        }
     },
 
     plugins: [createPersistedState({
