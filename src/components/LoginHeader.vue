@@ -78,7 +78,7 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    // console.log(data)
+                    // 通信に成功したらストアに保存
                     const flg_data = data['isSuccess']
                     if(flg_data){
                         console.log('ユーザー情報取得:ok')
@@ -128,6 +128,7 @@
                         const flg_data = data['isSuccess']
                         if(flg_data){
                             console.log('ログアウト:ok')
+                            //ストアの情報を削除
                             this.$store.commit("tokenDelete")
                             this.$router.replace("/")
                         }else {
