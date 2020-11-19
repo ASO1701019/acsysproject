@@ -2,34 +2,35 @@
     <div>
         <b-navbar toggleable="lg" variant="dark" type="dark">
             <a class="navbar-brand " href='/savecalorie'>
+                <!--タイトルボタン-->
                 <img src="../../public/favicon.png" width="35" height="35" class="d-inline-block align-top" alt="penguin">
                 acsys</a>
-
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
+                <!--左側のメニュー-->
                 <b-navbar-nav>
                     <b-nav-item href="/calendar">カレンダー</b-nav-item>
                     <b-nav-item href="/statistics">統計</b-nav-item>
                     <b-nav-item href="/training">トレーニング</b-nav-item>
-<!--                    <b-nav-item href="/tweet">Twitterに投稿</b-nav-item>-->
+                    <b-nav-item href="/tweet">Twitterに投稿</b-nav-item>
                 </b-navbar-nav>
 
                 <b-navbar-nav class="ml-auto">
                     <b-nav-item-dropdown right>
-                        <!-- Using 'button-content' slot -->
+                        <!-- 右側のメニュー -->
                         <template v-slot:button-content>
+                            <!--名前の取得-->
                             <em>{{userName}}</em>
-<!--                            Apiで名前の取得-->
                         </template>
+                        <!--ドロップダウンメニュー-->
                         <b-dropdown-item href="/userchange">登録情報の変更</b-dropdown-item>
                         <b-dropdown-item @click="openModal"><span class="text-danger">ログアウト</span></b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
-
             </b-collapse>
         </b-navbar>
 
-
+        <!--ログアウト-->
         <div class="example-modal-window">
             <!-- コンポーネント MyModal -->
             <MyModal @close="closeModal" v-if="modal">
@@ -56,13 +57,14 @@
         data() {
             return {
                 modal: false,
-                //通信に関数
+                //通信に使用する関数
                 dataGet:[],
                 userToken:this.$store.state.accountToken,
                 userInfBox:[],
             }
         },
         async created() {
+            <!--ユーザー情報をストアに保存する処理-->
             const URL = "https://fat3lak1i2.execute-api.us-east-1.amazonaws.com/acsys/users/information"
             this.dataGet={
                 account_token:this.userToken
@@ -100,6 +102,7 @@
                 })
         },
         methods:{
+            //モーダルに関してのメソッド
             openModal(){
                 this.modal = true
             },
@@ -107,6 +110,7 @@
                 this.modal = false
             },
             logout(){
+                //ログアウトした時の通信
                 const URL = "https://fat3lak1i2.execute-api.us-east-1.amazonaws.com/acsys/users/logout"
                 this.dataGet={
                     account_token:this.userToken
@@ -138,8 +142,5 @@
                 return this.$store.state.accountName
             }
         },
-        watch:{
-
-        }
     }
 </script>
