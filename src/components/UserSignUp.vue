@@ -346,14 +346,31 @@
                     this.errors.push(this.SignupValidation.SignupBirthdayResult)
                     SignBirthDay = false
                 }
+                else if (!(this.form.account_year > 1899 && this.form.account_year < 2021)){
+                    this.SignupValidation.SignupBirthdayResult = "年：年数制限オーバー"
+                    console.log(this.SignupValidation.SignupBirthdayResult)
+                    this.errors.push(this.SignupValidation.SignupBirthdayResult)
+                    SignBirthDay = false
+                }
                 else if (this.form.account_month.length > 2) {
                     this.SignupValidation.SignupBirthdayResult = "月：文字数オーバー"
                     console.log(this.SignupValidation.SignupBirthdayResult)
                     this.errors.push(this.SignupValidation.SignupBirthdayResult)
                     SignBirthDay = false
                 }
+                else if (!(this.form.account_month > 0 && this.form.account_month < 13)){
+                    this.SignupValidation.SignupBirthdayResult = "月：月数制限オーバー"
+                    console.log(this.SignupValidation.SignupBirthdayResult)
+                    this.errors.push(this.SignupValidation.SignupBirthdayResult)
+                    SignBirthDay = false
+                }
                 else if (this.form.account_day.length > 2) {
                     this.SignupValidation.SignupBirthdayResult = "日：文字数オーバー"
+                    console.log(this.SignupValidation.SignupBirthdayResult)
+                    this.errors.push(this.SignupValidation.SignupBirthdayResult)
+                    SignBirthDay = false
+                }else if (!(this.form.account_day > 0 && this.form.account_day < 32)){
+                    this.SignupValidation.SignupBirthdayResult = "日：日数制限オーバー"
                     console.log(this.SignupValidation.SignupBirthdayResult)
                     this.errors.push(this.SignupValidation.SignupBirthdayResult)
                     SignBirthDay = false
