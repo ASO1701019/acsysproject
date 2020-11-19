@@ -54,8 +54,8 @@ export default new Vuex.Store({
         //カロリー情報の取得
         calorieAdd(state,data){
             state.calorie = data.userCalorie
-            state.intakeCalorie = data.userintakeCalorie
-            state.consumptionCalorie = data.userconsumptionCalorie
+            state.intakeCalorie = data.userIntakeCalorie
+            state.consumptionCalorie = data.userConsumptionCalorie
         }
     },
 
