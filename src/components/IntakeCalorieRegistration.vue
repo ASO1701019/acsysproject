@@ -3,11 +3,16 @@
         <div class="row">
             <h1 class="col-auto pt-4 pb-2">摂取カロリー入力</h1>
         </div>
-        <v-date-picker
-                :input-props="{ class: 'formats.input', name: 'event_dates', placeholder:'日付を入力' }"
-                :mode="mode"
-                :formats="formats"
-                v-model="selectedDate"></v-date-picker>
+        <!--日付選択-->
+        <v-date-picker v-model="selectedDate">
+            <template v-slot="{ inputValue, inputEvents }">
+                <input
+                        class="bg-white border px-2 py-1 rounded"
+                        :value="inputValue"
+                        v-on="inputEvents"
+                />
+            </template>
+        </v-date-picker>
         <!--リスト-->
         <table class="table table-hover mt-1 table-sm col-auto">
             <thead>
@@ -28,9 +33,11 @@
                     <button v-on:click="removeItem(item)" class="btn btn-outline-danger btn-sm">ー</button>
                 </td>
             </tr>
+            <!--リストが空だった時-->
             <td v-if="!addItem.length">リストは空です</td>
             </tbody>
         </table>
+        <!--合計-->
         <div class="row">
             <h4 class="col-xs-6 col-auto pt-1 pb-2">摂取カロリー合計：{{sumCalories}}kcal</h4>
         </div>
@@ -145,11 +152,7 @@
                 addItem: [],
                 //通信用
                 foodArray:[],
-                //日付選択
-                mode: 'single',
-                formats: {
-                    input: ['YYYY-MM-DD'],
-                },
+                //カレンダー用
                 selectedDate: new Date(),
                 //分類
                 genreBox:[],
@@ -192,31 +195,45 @@
             addInputData(){
                 //バリデーション
                 let inputFoodCheck = false
+                //空だった時
                 let inputCalorieCheck = false
                 if (!this.inputFood){
                     this.inputFoodResult="食べ物を入力してください"
                     inputFoodCheck = false
-                }else if (this.inputFood.length>75){
+                }
+                //文字数が多いとき
+                else if (this.inputFood.length>75){
                     this.inputFoodResult="文字数が多すぎます"
                     inputFoodCheck = false
-                }else{
+                }
+                //入力が正常
+                else{
                     this.inputFoodResult=""
                     inputFoodCheck = true
                 }
+                //カロリーが空だったとき
                 if (!this.inputCalorie){
                     this.inputCalorieResult="カロリーを入力してください"
                     inputCalorieCheck = false
-                }else if(Number(this.inputCalorie) < 0){
+                }
+                //値が負数だったとき
+                else if(Number(this.inputCalorie) < 0){
                     this.inputCalorieResult="プラスで入力してください"
                     inputCalorieCheck = false
-                }else if (this.inputCalorie.length > 7){
+                }
+                //桁数が多い
+                else if (this.inputCalorie.length > 7){
                     this.inputCalorieResult="桁数が多すぎます"
                     inputCalorieCheck = false
-                }else {
+                }
+                //入力が正常
+                else {
                     this.inputCalorieResult=""
                     inputCalorieCheck = true
                 }
+                //日付加工
                 let time = this.selectedDate.getFullYear() + ("0" + (this.selectedDate.getMonth() + 1)).slice(-2) +("0" + this.selectedDate.getDate()).slice(-2)
+                //リストに追加
                 if (inputFoodCheck === true && inputCalorieCheck ===true){
                     //追加処理
                     this.addItem.push({
@@ -229,6 +246,7 @@
                     this.inputModal = false
                 }
             },
+            //食べ物の取得
             getFood:async function(item){
                 this.selectModal = false
                 this.openFoodSelectModal()
@@ -255,6 +273,7 @@
                         alert("エラーが発生しました。もう一度やり直してください")
                     })
             },
+            //リストに追加
             addSelectData(food,calorie){
                 let time = this.selectedDate.getFullYear() + ("0" + (this.selectedDate.getMonth() + 1)).slice(-2) +("0" + this.selectedDate.getDate()).slice(-2)
                 this.addItem.push({
@@ -311,6 +330,7 @@
                 }, 0)
             }
         },async created() {
+            //食べ物のリスト取得
             const URL = "https://fat3lak1i2.execute-api.us-east-1.amazonaws.com/acsys/calorie/food"
 
             await fetch(URL,{
