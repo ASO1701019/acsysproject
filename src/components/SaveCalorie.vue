@@ -33,9 +33,9 @@
             return{
                 //カロリー関係
                 totalCalorie:0,
-                //消費
-                todayPlusCalorie:0,
                 //摂取
+                todayPlusCalorie:0,
+                //消費
                 todayMinusCalorie:0,
                 todayCalorie:0,
                 comment:"",
@@ -67,8 +67,8 @@
                     //Twitter用のカロリーを登録
                     let calorieInf={
                         userCalorie : this.totalCalorie,
-                        userIntakeCalorie : this.todayMinusCalorie,
-                        userConsumptionCalorie : this.todayPlusCalorie
+                        userIntakeCalorie : this.todayPlusCalorie,
+                        userConsumptionCalorie : this.todayMinusCalorie
                     }
                     this.$store.commit('calorieAdd',calorieInf)
                 })
