@@ -3,11 +3,16 @@
         <div class="row">
             <h1 class="col-auto pt-4 pb-2">消費カロリー入力</h1>
         </div>
-        <v-date-picker
-                :input-props="{ class: 'formats.input', name: 'event_dates', placeholder:'日付を入力' }"
-                :mode="mode"
-                :formats="formats"
-                v-model="selectedDate"></v-date-picker>
+        <!--日付選択-->
+        <v-date-picker v-model="selectedDate">
+            <template v-slot="{ inputValue, inputEvents }">
+                <input
+                        class="bg-white border px-2 py-1 rounded"
+                        :value="inputValue"
+                        v-on="inputEvents"
+                />
+            </template>
+        </v-date-picker>
         <!--リスト-->
         <table class="table table-hover mt-1 table-sm col-auto">
             <thead>
@@ -28,15 +33,17 @@
                     <button v-on:click="removeItem(item)" class="btn btn-outline-danger btn-sm">ー</button>
                 </td>
             </tr>
+            <!--リストが空だった時-->
             <td v-if="!addItem.length">リストは空です</td>
             </tbody>
         </table>
+        <!--合計-->
         <div class="row">
             <h4 class="col-xs-6 col-auto pt-1 pb-2">消費カロリー合計：{{sumCalories}}kcal</h4>
         </div>
         <div class="row">
             <button @click="openInputModal" class="btn btn-outline-info col-lg-2 col-auto">入力して追加する</button>
-<!--            <button @click="openSelectModal" class="btn btn-outline-primary col-lg-2 col-auto ml-3 disabled">選択して追加する</button>-->
+<!--            <button @click="openSelectModal" class="btn btn-outline-primary col-lg-2 col-auto ml-3">選択して追加する</button>-->
             <button class="btn btn-outline-success col-lg-2 col-3 ml-auto" @click="enterInformation">決定</button>
         </div>
 
@@ -142,10 +149,6 @@
                 addItem:[],
                 trainingArray:[],
                 //日付選択
-                mode: 'single',
-                formats: {
-                    input: ['YYYY-MM-DD'],
-                },
                 selectedDate: new Date(),
                 //分類
                 genreBox:[],
@@ -188,30 +191,44 @@
                 //バリデーション
                 let inputTrainingCheck = false
                 let inputCalorieCheck = false
+                //トレーニングが空だった時
                 if (!this.inputTraining){
                     this.inputTrainingResult="トレーニングを入力してください"
                     inputTrainingCheck = false
-                }else if (this.inputTraining.length>75){
+                }
+                //文字数が多い時
+                else if (this.inputTraining.length>75){
                     this.inputTrainingResult="文字数が多すぎます"
                     inputTrainingCheck = false
-                }else {
+                }
+                //正常
+                else {
                     this.inputTrainingResult=""
                     inputTrainingCheck = true
                 }
+                //カロリーが空だったとき
                 if (!this.inputCalorie){
                     this.inputCalorieResult="カロリーを入力してください"
                     inputCalorieCheck = false
-                }else if(Number(this.inputCalorie) < 0){
+                }
+                //値が負数だったとき
+                else if(Number(this.inputCalorie) < 0){
                     this.inputCalorieResult="プラスで入力してください"
                     inputCalorieCheck = false
-                }else if (this.inputCalorie.length > 7){
+                }
+                //桁数が多いとき
+                else if (this.inputCalorie.length > 7){
                     this.inputCalorieResult="桁数が多すぎます"
                     inputCalorieCheck = false
-                }else {
+                }
+                //値が正常
+                else {
                     this.inputCalorieResult=""
                     inputCalorieCheck = true
                 }
+                //日付加工
                 let time = this.selectedDate.getFullYear() + ("0" + (this.selectedDate.getMonth() + 1)).slice(-2) +("0" + this.selectedDate.getDate()).slice(-2)
+                //リストに登録
                 if (inputTrainingCheck === true && inputCalorieCheck ===true) {
                     //追加処理
                     this.addItem.push({
@@ -224,6 +241,7 @@
                     this.inputModal = false
                 }
             },
+            //データ選択時リスト追加
             addSelectData(training,calorie){
                 let time = this.selectedDate.getFullYear() + ("0" + (this.selectedDate.getMonth() + 1)).slice(-2) +("0" + this.selectedDate.getDate()).slice(-2)
                 this.addItem.push({
@@ -273,6 +291,7 @@
                     })
 
             },
+            //トレーニングの中身取得
             getTraining:async function(item){
                 this.selectModal = false
                 this.openTrainingSelectModal()
@@ -308,6 +327,7 @@
             }
         },
         async created() {
+            //トレーニング分類取得
             const URL = "https://fat3lak1i2.execute-api.us-east-1.amazonaws.com/acsys/calorie/motion"
 
             await fetch(URL,{
