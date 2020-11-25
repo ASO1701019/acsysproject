@@ -13,6 +13,7 @@
             <div class="form-group row mx-auto mt-5">
                 <label for="NewPass" class="col-sm-4  col-form-label text-center col-auto">新しいパスワード</label><br>
                 <input type="password" class="col-sm-8 col-auto form-control ml-xs-5 " id="NewPass" v-model="form.account_new_pass">
+                <b-container class="d-flex justify-content-center" style="">※6文字以上・半角英数字のみ</b-container>
             </div>
             <p class="text-danger text-center h5 col-9">
                 {{ NewPasswordResult }}
