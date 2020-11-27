@@ -15,8 +15,9 @@
                 </div><!-- /.row -->
             </div><!-- /.container -->
         </div><!-- /.jumbotron -->
+
         <div class="container marketing">
-            <h2 class="text-center pt-4">あらゆるデバイスでカロリーを管理を簡単に</h2>
+            <h2 class="text-center pt-4">カロリー管理を簡単に</h2>
             <div class="row pt-5">
                 <div class="col-lg-4">
                     <div class="text-center mb-1">
@@ -25,7 +26,7 @@
                             <path fill-rule="evenodd" d="M13.991 3H2c-.325 0-.502.078-.602.145a.758.758 0 0 0-.254.302A1.46 1.46 0 0 0 1 4.01V10c0 .325.078.502.145.602.07.105.17.188.302.254a1.464 1.464 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.758.758 0 0 0 .254-.302 1.464 1.464 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.757.757 0 0 0-.302-.254A1.46 1.46 0 0 0 13.99 3zM14 2H2C0 2 0 4 0 4v6c0 2 2 2 2 2h12c2 0 2-2 2-2V4c0-2-2-2-2-2z"/>
                         </svg>
                     </div><!-- /.text-center -->
-                    <h5 class="pb-2 pt-1 font-weight-bold">場所やデバイスを問わずカロリー管理</h5>
+                    <h5 class="pb-2 pt-1 font-weight-bold">場所やデバイスを問わず</h5>
                     <p>Webアプリのため、どこでも利用出来ます。</p>
                 </div><!-- /.col-lg-4 -->
                 <div class="col-lg-4">
@@ -50,12 +51,33 @@
                 </div><!-- /.col-lg-4 -->
             </div><!-- /.row -->
 
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="text-center mb-1">
+                        <img src="../assets/Twitter_Logo_Blue.png" class="img-fluid" alt="Responsive image" width="76" height="76">
+                    </div><!-- /.text-center -->
+                    <h5 class="pb-2 pt-1 font-weight-bold"> Twitterに簡単共有</h5>
+                    <p>今までの貯金、今日のカロリーが自動で入力されるため簡単にツイートできます。</p>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <div class="text-center mb-1">
+                        <svg width="64" height="64" viewBox="0 0 16 16" class="bi bi-emoji-smile" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683z"/>
+                            <path d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+                        </svg>
+                    </div><!-- /.text-center -->
+                    <h5 class="pb-2 pt-1 font-weight-bold"> 完全フリー</h5>
+                    <p>卒業制作なので広告なし、利用無料です。</p>
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+
             <hr class="featurette-divider  mt-5 pb-5">
 
             <div class="row featurette">
                 <div class="col-md-7">
                     <h2 class="featurette-heading">シンプルなデザイン<span class="text-muted"> 直感的に操作できる。</span></h2>
-                    <p class="lead">画像に表示されているのはカロリー貯金画面です。今までの貯金や摂取、消費カロリーがすぐにわかるようになっています。またこの画面からカロリーの入力画面には簡単に移ることが出来ます。</p>
+                    <p class="lead">画像に表示されているのは、カロリー貯金画面です。視覚的にわかりやすいようにグラフやカレンダーを使用しています。スマートフォンでも同じように扱えます。</p>
                 </div>
                 <div class="col-md-5">
                     <img src="../assets/topPage.png" class="img-fluid" alt="Responsive image">
