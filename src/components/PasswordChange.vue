@@ -3,16 +3,16 @@
         <form>
             <!--現在のパスワード-->
             <div class="form-group row mx-auto mt-5">
-                <label for="OldPass"  class="col-sm-4  col-form-label text-center col-auto">現在のパスワード</label><br>
-                <input type="password" class="col-sm-8 col-auto form-control ml-xs-5 " id="OldPass" v-model="form.account_old_pass">
+                <label for="OldPass"  class="col-md-3  col-form-label text-center col-auto">現在のパスワード</label><br>
+                <input type="password" class="col-md-9 col-auto form-control ml-xs-5 " id="OldPass" v-model="form.account_old_pass">
             </div>
             <p class="text-danger text-center h5 col-9">
                 {{ OldPasswordResult }}
             </p>
             <!--新しいパスワード-->
             <div class="form-group row mx-auto mt-5">
-                <label for="NewPass" class="col-sm-4  col-form-label text-center col-auto">新しいパスワード</label><br>
-                <input type="password" class="col-sm-8 col-auto form-control ml-xs-5 " id="NewPass" v-model="form.account_new_pass">
+                <label for="NewPass" class="col-md-3  col-form-label text-center col-auto">新しいパスワード</label><br>
+                <input type="password" class="col-md-9 col-auto form-control ml-xs-5 " id="NewPass" v-model="form.account_new_pass">
                 <b-container class="d-flex justify-content-center" style="">※6文字以上・半角英数字のみ</b-container>
             </div>
             <p class="text-danger text-center h5 col-9">
@@ -20,14 +20,14 @@
             </p>
             <!--新しいパスワード確認-->
             <div class="form-group row mx-auto mt-5">
-                <label for="ConNewPass" class="col-sm-4  col-form-label text-center col-auto">新しいパスワード確認</label><br>
-                <input type="password" class="col-sm-8 col-auto form-control ml-xs-5 " id="ConNewPass" v-model="form.account_con_new_pass">
+                <label for="ConNewPass" class="col-md-3  col-form-label text-center col-auto">新しいパスワード確認</label><br>
+                <input type="password" class="col-md-9 col-auto form-control ml-xs-5 " id="ConNewPass" v-model="form.account_con_new_pass">
             </div>
             <p class="text-danger text-center h5 col-9">
                 {{ ConNewPasswordResult }}
             </p>
         </form>
-        <div class="row mt-3 md-5">
+        <div class="row mt-5 md-5">
             <button id="password_decision" class="btn btn-success col-6 mx-auto" @click="checkHandler(form,$event)">決定</button>
         </div>
     </div>
@@ -45,18 +45,15 @@
                     account_con_new_pass: "",
                 },
                 errors:[],
-
+                //バリデーション結果
                 OldPasswordResult: "",
                 NewPasswordResult: "",
                 ConNewPasswordResult: ""
-
             }
         },methods: {
             checkHandler: function (form, event) {
                 this.checkForm(event);
             },
-
-
             //-----------------------------バリデーション-------------------------------------
             checkForm: async function(event) {
                 let OldPass
@@ -77,7 +74,6 @@
                     OldPass = true
                     this.OldPasswordResult = ""
                 }
-
                 // 新しいパスワードのバリデーション
                 if(!this.form.account_new_pass){
                     this.NewPasswordResult = "新しいパスワードを入力してください"
@@ -106,8 +102,6 @@
                     NewPass = true
                     this.NewPasswordResult = ""
                 }
-
-
                 // 新しいパスワード確認のバリデーション
                 if(!this.form.account_con_new_pass){
                     this.ConNewPasswordResult = "もう一度入力してください"
@@ -159,17 +153,8 @@
                             console.log(error)
                         })
                 }
-
-
                 event.preventDefault();
             },
-            created() {
-            }
         }
     }
-
 </script>
-
-<style scoped>
-
-</style>

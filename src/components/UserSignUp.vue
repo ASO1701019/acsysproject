@@ -486,6 +486,7 @@
                 }
                 else {
                     SignWeight = true
+                    this.SignupValidation.SignupWeightResult = ""
                 }
 
                 // 身長の入力フォームのバリデーション
@@ -515,6 +516,7 @@
                 }
                 else {
                     SignHeight = true
+                    this.SignupValidation.SignupHeightResult = ""
                 }
 
                 // 氏名の入力フォームのバリデーション
@@ -548,7 +550,7 @@
         },created() {
             //すでにトークンがある場合
             if (this.$store.state.accountToken) {
-                this.$router.replace("/passwordchange")
+                this.$router.replace("/savecalorie")
             }
         }
     }

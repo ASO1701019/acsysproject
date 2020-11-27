@@ -202,6 +202,7 @@
                 }
                 else {
                     SignWeight = true
+                    this.ChangeValidation.ChangeWeightResult = ""
                 }
 
                 // 身長の入力フォームのバリデーション
@@ -231,6 +232,7 @@
                 }
                 else {
                     SignHeight = true
+                    this.ChangeValidation.ChangeHeightResult = ""
                 }
 
                 // 身体レベルの入力フォームのバリデーション

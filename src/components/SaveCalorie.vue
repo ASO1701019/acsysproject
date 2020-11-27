@@ -6,20 +6,22 @@
                 <li class="list-group-item list-group-item-primary lead">今日の貯金:{{todayCalorie}}kcal</li>
                 <li class="list-group-item list-group-item-info lead">ー摂取カロリー：{{todayPlusCalorie}}kcal</li>
                 <li class="list-group-item list-group-item-danger lead">＋消費カロリー：{{todayMinusCalorie}}kcal</li>
+                <!--コメント-->
                 <li class="list-group-item  mb-4 lead">{{comment}}</li>
+                <!--カロリー登録ボタン-->
                 <a class="btn btn-outline-info btn-lg mb-4 " href="/intakecalorie" role="button">摂取カロリー登録 ー</a>
                 <a class="btn btn-outline-danger btn-lg mb-4" href="/consumptioncalorie" role="button">消費カロリー登録 ＋</a>
-            </ul>
+            </ul><!-- /.ul -->
             <div class="chart-small col-lg-6 col-auto">
+                <!--グラフ-->
                 <SaveCalorieChart :chart-data="dataCollection" :options="dataOptions"></SaveCalorieChart>
-            </div>
-        </div>
-
-    </div>
+            </div><!-- /.div -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
 </template>
 
 <script>
-
+    //グラフ
     import SaveCalorieChart from "./SaveCalorieChart";
 
     export default {
@@ -31,24 +33,24 @@
             return{
                 //カロリー関係
                 totalCalorie:0,
+                //摂取
                 todayPlusCalorie:0,
+                //消費
                 todayMinusCalorie:0,
                 todayCalorie:0,
                 comment:"",
                 //グラフの関数
                 dataCollection: null,
                 dataOptions:null,
-                //通信に関数
-                dataGet:[],
             }
         },
         async created() {
-
+            //カロリーデータ取得
             const URL = "https://fat3lak1i2.execute-api.us-east-1.amazonaws.com/acsys/users/calorie"
-            this.dataGet={
+            let dataGet={
                 account_token:this.$store.state.accountToken
             }
-            const json_data = JSON.stringify(this.dataGet)
+            const json_data = JSON.stringify(dataGet)
             await fetch(URL,{
                 mode:'cors',
                 method:'POST',
@@ -62,44 +64,36 @@
                     this.todayPlusCalorie = data["today_intaked"]
                     this.todayMinusCalorie  = data["today_burned"]
                     this.fillData()
+                    //Twitter用のカロリーを登録
+                    let calorieInf={
+                        userCalorie : this.totalCalorie,
+                        userIntakeCalorie : this.todayPlusCalorie,
+                        userConsumptionCalorie : this.todayMinusCalorie
+                    }
+                    this.$store.commit('calorieAdd',calorieInf)
                 })
                 .catch(function (error) {
                     console.log(error)
                     alert("エラーが発生しました。もう一度やり直してください")
                 })
 
+            //貯金を求める
             this.todayCalorie = this.todayMinusCalorie - this.todayPlusCalorie
 
-            // 貯金が50より高い場合のメッセージ
-            let god_list = ["いい感じに貯金が貯まってきましたね！無理をせずこの調子で頑張っていきましょう!",
-                            "かなり順調に貯金が貯まってきています！その調子です！",
-                            "素晴らしいです！とても頑張っていますね！このまま自分が満足するまで貯金を貯めていきましょう！"
-                        ]
-            let bad_list = ["貯金がマイナスになってしまいましたね。こんな時は運動する量を増やしたり、食事を見直してみたりしましょう。",
-                            "貯金が無くなりました。きついかもしれませんがまずは運動や食事の見直しから始めていきましょう。",
-                            "最近少し食生活や運動が緩みがちではありませんか？これからも頑張りしょう。"
-                        ]
-            // ランダム関数
-            let random
-            // list配列の最大値と最小値
-            let min = 0
-            let max = 2
+            //コメント
             if (this.totalCalorie>50){
-                random = Math.floor(Math.random() * (max + 1 - min)) + min
-                // this.comment = "いい感じに貯金が貯まってきましたね！無理をせずこの調子で頑張っていきましょう!" + "ここで豆知識です。" + list[random]
-                this.comment = god_list[random]
+                this.comment = "いい感じに貯金が貯まってきましたね！無理をせずこの調子で頑張っていきましょう。"
             }else if (this.totalCalorie>=0){
                 this.comment = "今日も一日頑張っていきましょう！"
             } else{
-                random = Math.floor(Math.random() * (max + 1 - min)) + min
-                // this.comment = "貯金がマイナスになってしまいましたね。こんな時は運動する量を増やしたり、食事を見直してみたりしましょう！"
-                this.comment = bad_list[random]
+                this.comment = "貯金がマイナスになってしまいましたね。こんな時は運動する量を増やしたり、食事を見直してみたりしましょう！"
             }
         },
         mounted () {
             this.fillData()
         },
         methods: {
+            //グラフ
             fillData () {
                 this.dataCollection = {
                     labels: ['＋ 消費カロリー', 'ー 摂取カロリー'],

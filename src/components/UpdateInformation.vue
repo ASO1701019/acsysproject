@@ -17,6 +17,46 @@
             <hr>
             <div class="row mb-4">
                 <div class="col-3 lead">
+                    11月17日
+                </div>
+                <div class="col lead">
+                    Twitterカードが表示されるようになりました！<br>
+                </div>
+            </div><!-- /.row mb-4 -->
+            <div class="row mb-4">
+                <div class="col-3 lead">
+                    11月4日
+                </div>
+                <div class="col lead">
+                    サーバーのログが取れていない問題を解決しました。<br>
+                </div>
+            </div><!-- /.row mb-4 -->
+            <div class="row mb-4">
+                <div class="col-3 lead">
+                    10月31日
+                </div>
+                <div class="col lead">
+                    Topページの反応速度を向上しました。<br>
+                </div>
+            </div><!-- /.row mb-4 -->
+            <div class="row mb-4">
+                <div class="col-3 lead">
+                    10月19日
+                </div>
+                <div class="col lead">
+                    Topページと更新情報ページの下部に、Twitterシェアボタンと作成者、連絡先を記載しました。<br>
+                </div>
+            </div><!-- /.row mb-4 -->
+            <div class="row mb-4">
+                <div class="col-3 lead">
+                    10月10日
+                </div>
+                <div class="col lead">
+                    タイトルをわかりやすく変更しました。<br>
+                </div>
+            </div><!-- /.row mb-4 -->
+            <div class="row mb-4">
+                <div class="col-3 lead">
                     9月29日
                 </div>
                 <div class="col lead">
@@ -25,7 +65,7 @@
                     <span class="text-danger mt-3">使えなくなる機能があります！！</span><br>
                     現在カロリーでの選択入力を使えなくしています。もっと使いやすくなるように改善しますのでもうしばらくお待ちください。
                 </div>
-            </div><!-- /.row mb-3 -->
+            </div><!-- /.row mb-4 -->
             <div class="row mb-4">
                 <div class="col-3 lead">
                     9月17日
@@ -35,7 +75,7 @@
                     ぜひフォローしてください！
                     <a href="https://twitter.com/acsys_calorie">Twitterアカウントはこちら</a>
                 </div>
-            </div><!-- /.row mb-3 -->
+            </div><!-- /.row mb-4 -->
             <div class="row mb-4">
                 <div class="col-3 lead">
                     8月20日
@@ -52,7 +92,7 @@
                     ・新しく摂取カロリーを登録すると、前に登録した摂取カロリーが消えること。<br>
                     ・統計機能でリストにある貯金の表示ミスを修正しました。
                 </div>
-            </div><!-- /.row mb-3 -->
+            </div><!-- /.row mb-4 -->
             <div class="row mb-4">
                 <div class="col-3 lead">
                     8月14日
@@ -60,7 +100,7 @@
                 <div class="col lead">
                     サイト公開しました。
                 </div>
-            </div><!-- /.row mb-3 -->
+            </div><!-- /.row mb-4 -->
         </div><!-- /.container -->
         <hr class="featurette-divider  mt-5">
         <footer class="container">

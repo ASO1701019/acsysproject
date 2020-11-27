@@ -3,7 +3,7 @@
         <div class="jumbotron jumbotron-fluid bg-dark">
             <div class="container text-center">
                 <h1 class="display-1 font-weight-lighter" style="font-family: Helvetica,'Yu Gothic UI',serif">acsys</h1>
-                <h3 class= "font-weight-lighter" style="font-family: Helvetica,'Yu Gothic UI',serif">-簡単にカロリー管理-</h3>
+                <h3 class= "font-weight-lighter" style="font-family: Helvetica,'Yu Gothic UI',serif">-簡単にカロリー貯金-</h3>
                 <hr class="my-4" style="background-color: white">
                 <div class="row">
                     <div class="col text-right">
@@ -26,7 +26,7 @@
                         </svg>
                     </div><!-- /.text-center -->
                     <h5 class="pb-2 pt-1 font-weight-bold">場所やデバイスを問わずカロリー管理</h5>
-                    <p>Webアプリのため、どこからでもカロリー管理が利用出来るようになります。</p>
+                    <p>Webアプリのため、どこでも利用出来ます。</p>
                 </div><!-- /.col-lg-4 -->
                 <div class="col-lg-4">
                     <div class="text-center mb-1">
@@ -37,7 +37,7 @@
                         </svg>
                     </div><!-- /.text-center -->
                     <h5 class="pb-2 pt-1 font-weight-bold">直感的にカロリー管理</h5>
-                    <p>グラフでその日や月のカロリー情報を表示しているため、現在の状況をすぐ理解できます。</p>
+                    <p>グラフで日や月のカロリー情報を表示しているため、現在の状況をすぐ理解できます。</p>
                 </div><!-- /.col-lg-4 -->
                 <div class="col-lg-4">
                     <div class="text-center mb-1">
