@@ -17,6 +17,21 @@
             <hr>
             <div class="row mb-4">
                 <div class="col-3 lead">
+                    11月27日
+                </div>
+                <div class="col lead">
+                    <div class="mb-2">
+                        以下の機能を公開しました。<br>
+                        ・Twitter投稿<br>
+                        ・パスワードの変更<br>
+                    </div>
+                    以下のバグを修正しました。<br>
+                    ・新規登録の誕生日に存在しない日付でも登録できるのを修正しました。。<br>
+                    ・カロリー入力のカレンダー表示を修正しました。
+                </div>
+            </div><!-- /.row mb-4 -->
+            <div class="row mb-4">
+                <div class="col-3 lead">
                     11月17日
                 </div>
                 <div class="col lead">
