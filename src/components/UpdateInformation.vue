@@ -20,6 +20,7 @@
                     11月27日
                 </div>
                 <div class="col lead">
+                    Topページを少し更新しました。
                     <div class="mb-2">
                         以下の機能を公開しました。<br>
                         ・Twitter投稿<br>
