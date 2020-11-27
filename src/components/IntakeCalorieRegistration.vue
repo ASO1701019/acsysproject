@@ -13,7 +13,6 @@
                 />
             </template>
         </v-date-picker>
-        <span class="text-danger">{{selectedDateResult}}</span>
         <!--リスト-->
         <table class="table table-hover mt-1 table-sm col-auto">
             <thead>
@@ -175,7 +174,12 @@
             },
             //直接入力のモーダルを開く
             openInputModal(){
-                this.inputModal = true
+                if(!this.selectedDate){
+                    alert("エラーが発生しました。もう一度やり直してください")
+                }
+                else {
+                    this.inputModal = true
+                }
             },
             //選択入力のモーダルを開く
             openSelectModal(){
@@ -197,7 +201,7 @@
             addInputData(){
                 //バリデーション
                 let inputFoodCheck = false
-                let selectedDateCheck = false
+                // let selectedDateCheck = false
                 //空だった時
                 let inputCalorieCheck = false
                 if (!this.inputFood){
@@ -234,19 +238,17 @@
                     this.inputCalorieResult=""
                     inputCalorieCheck = true
                 }
-                //日付未入力
+                // 日付未入力
                 if(!this.selectedDate){
                     this.selectedDateResult="日付を選択してください"
-                    selectedDateCheck = false
                 }else{
-                    selectedDateCheck = true
                     this.selectedDateResult=""
                 }
 
                 //日付加工
                 let time = this.selectedDate.getFullYear() + ("0" + (this.selectedDate.getMonth() + 1)).slice(-2) +("0" + this.selectedDate.getDate()).slice(-2)
                 //リストに追加
-                if (selectedDateCheck === true && inputFoodCheck === true && inputCalorieCheck ===true){
+                if (inputFoodCheck === true && inputCalorieCheck ===true){
                     //追加処理
                     this.addItem.push({
                         add_date:Number(time),
