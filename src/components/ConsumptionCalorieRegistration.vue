@@ -4,15 +4,12 @@
             <h1 class="col-auto pt-4 pb-2">消費カロリー入力</h1>
         </div>
         <!--日付選択-->
-        <v-date-picker v-model="selectedDate">
-            <template v-slot="{ inputValue, inputEvents }">
-                <input
-                        class="bg-white border px-2 py-1 rounded"
-                        :value="inputValue"
-                        v-on="inputEvents"
-                />
-            </template>
-        </v-date-picker>
+        {{selectedDate}}
+        <datepicker
+            v-model=selectedDate
+            :format="DatePickerFormat"
+            :language="ja">
+        </datepicker>
         <!--リスト-->
         <table class="table table-hover mt-1 table-sm col-auto">
             <thead>
@@ -129,10 +126,12 @@
 
 <script>
     import inputMyModal from "./MyModal";
+    import Datepicker from "vuejs-datepicker";
+    import {ja} from 'vuejs-datepicker/dist/locale'
 
     export default {
         name: "ConsumptionCalorieRegistration",
-        components: { inputMyModal },
+        components: { inputMyModal,Datepicker },
         data(){
             return{
                 //モーダル
@@ -150,6 +149,8 @@
                 trainingArray:[],
                 //日付選択
                 selectedDate: new Date(),
+                DatePickerFormat: 'yyyy-MM-dd',
+                ja:ja,
                 //分類
                 genreBox:[],
                 trainingBox:[],
