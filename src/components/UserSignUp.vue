@@ -28,9 +28,21 @@
                 <!--日 -->
                 <input type="text" id="Day" v-model="form.account_day" class="col-2 form-control">
                 <label for="Day" class="col-1 col-form-label">日</label>
+                <!-- 生年月日入力条件 -->
+                <b-container class="d-flex justify-content-center" style="">※年4桁・月1又は2桁・日1又は2桁（半角英数字のみ）</b-container>
             </div>
+
             <p class="text-danger text-center h5 col-9">
                 {{ SignupValidation.SignupBirthdayResult }}
+            </p>
+            <p class="text-danger text-center h5 col-9">
+                {{ SignupValidation.SignupBirthdayYearResult }}
+            </p>
+            <p class="text-danger text-center h5 col-9">
+                {{ SignupValidation.SignupBirthdayMonthResult }}
+            </p>
+            <p class="text-danger text-center h5 col-9">
+                {{ SignupValidation.SignupBirthdayDayResult }}
             </p>
 
             <!--性別 -->
@@ -169,6 +181,9 @@
                 SignupValidation: {
                     SignupNameResult: "",
                     SignupBirthdayResult: "",
+                    SignupBirthdayYearResult: "",
+                    SignupBirthdayMonthResult: "",
+                    SignupBirthdayDayResult: "",
                     SignupAddressResult: "",
                     SignupPasswordResult: "",
                     SignupHeightResult: "",
@@ -245,6 +260,9 @@
                 let SignPass
                 let SignName
                 let SignBirthDay
+                let SignBirthDayYear
+                let SignBirthDayMonth
+                let SignBirthDayDay
                 let SignWeight
                 let SignHeight
                 let SignLevel
@@ -330,55 +348,114 @@
 
 
                 // 生年月日の入力フォームのバリデーション
-                if (!this.form.account_year || !this.form.account_year || !this.form.account_year) {
+                if (!this.form.account_year && !this.form.account_year && !this.form.account_month && !this.form.account_day){
+                    this.SignupValidation.SignupBirthdayResult = ""
+                    this.SignupValidation.SignupBirthdayYearResult = ""
+                    this.SignupValidation.SignupBirthdayMonthResult = ""
+                    this.SignupValidation.SignupBirthdayDayResult = ""
                     this.SignupValidation.SignupBirthdayResult = "生年月日を入力してください"
                     console.log(this.SignupValidation.SignupBirthdayResult)
                     this.errors.push(this.SignupValidation.SignupBirthdayResult)
                     SignBirthDay = false
                 }
-                else if (!re2.test(this.form.account_year) || !re2.test(this.form.account_month) || !re2.test(this.form.account_day)) {
+                else if(!re2.test(this.form.account_year)){
+                    this.SignupValidation.SignupBirthdayResult = ""
+                    this.SignupValidation.SignupBirthdayYearResult = ""
+                    this.SignupValidation.SignupBirthdayMonthResult = ""
+                    this.SignupValidation.SignupBirthdayDayResult = ""
                     this.SignupValidation.SignupBirthdayResult = "数値以外の値、もしくは全角が含まれています"
                     console.log(this.SignupValidation.SignupBirthdayResult)
                     this.errors.push(this.SignupValidation.SignupBirthdayResult)
                     SignBirthDay = false
                 }
-                else if (this.form.account_year.length > 4) {
-                    this.SignupValidation.SignupBirthdayResult = "年：文字数オーバー"
+                else if(!re2.test(this.form.account_month)){
+                    this.SignupValidation.SignupBirthdayResult = ""
+                    this.SignupValidation.SignupBirthdayYearResult = ""
+                    this.SignupValidation.SignupBirthdayMonthResult = ""
+                    this.SignupValidation.SignupBirthdayDayResult = ""
+                    this.SignupValidation.SignupBirthdayResult = "数値以外の値、もしくは全角が含まれています"
                     console.log(this.SignupValidation.SignupBirthdayResult)
                     this.errors.push(this.SignupValidation.SignupBirthdayResult)
                     SignBirthDay = false
                 }
-                else if (!(this.form.account_year > 1899 && this.form.account_year < 2021)){
-                    this.SignupValidation.SignupBirthdayResult = "年：年数制限エラー"
+                else if(!re2.test(this.form.account_day)){
+                    this.SignupValidation.SignupBirthdayResult = ""
+                    this.SignupValidation.SignupBirthdayYearResult = ""
+                    this.SignupValidation.SignupBirthdayMonthResult = ""
+                    this.SignupValidation.SignupBirthdayDayResult = ""
+                    this.SignupValidation.SignupBirthdayResult = "数値以外の値、もしくは全角が含まれています"
                     console.log(this.SignupValidation.SignupBirthdayResult)
                     this.errors.push(this.SignupValidation.SignupBirthdayResult)
                     SignBirthDay = false
                 }
-                else if (this.form.account_month.length > 2) {
-                    this.SignupValidation.SignupBirthdayResult = "月：文字数オーバー"
-                    console.log(this.SignupValidation.SignupBirthdayResult)
-                    this.errors.push(this.SignupValidation.SignupBirthdayResult)
-                    SignBirthDay = false
-                }
-                else if (!(this.form.account_month > 0 && this.form.account_month < 13)){
-                    this.SignupValidation.SignupBirthdayResult = "月：月数制限エラー"
-                    console.log(this.SignupValidation.SignupBirthdayResult)
-                    this.errors.push(this.SignupValidation.SignupBirthdayResult)
-                    SignBirthDay = false
-                }
-                else if (this.form.account_day.length > 2) {
-                    this.SignupValidation.SignupBirthdayResult = "日：文字数オーバー"
-                    console.log(this.SignupValidation.SignupBirthdayResult)
-                    this.errors.push(this.SignupValidation.SignupBirthdayResult)
-                    SignBirthDay = false
-                }else if (!(this.form.account_day > 0 && this.form.account_day < EndDay )){
-                    this.SignupValidation.SignupBirthdayResult = "日：日数制限エラー"
-                    console.log(this.SignupValidation.SignupBirthdayResult)
-                    this.errors.push(this.SignupValidation.SignupBirthdayResult)
-                    SignBirthDay = false
-                } else {
+                else {
+
                     SignBirthDay = true
                     this.SignupValidation.SignupBirthdayResult = ""
+
+                    // 年バリデーション
+                    if (this.form.account_year.length > 4) {
+                        this.SignupValidation.SignupBirthdayYearResult = "年：文字数オーバー"
+                        console.log(this.SignupValidation.SignupBirthdayYearResult)
+                        this.errors.push(this.SignupValidation.SignupBirthdayYearResult)
+                        SignBirthDayYear = false
+                    } else if (!this.form.account_year) {
+                        this.SignupValidation.SignupBirthdayYearResult = ""
+                        console.log(this.SignupValidation.SignupBirthdayYearResult)
+                        this.errors.push(this.SignupValidation.SignupBirthdayYearResult)
+                        SignBirthDayYear = false
+                    } else if (!(this.form.account_year > 1899 && this.form.account_year < 2021)) {
+                        this.SignupValidation.SignupBirthdayYearResult = "年：年数制限エラー"
+                        console.log(this.SignupValidation.SignupBirthdayYearResult)
+                        this.errors.push(this.SignupValidation.SignupBirthdayYearResult)
+                        SignBirthDayYear = false
+                    } else {
+                        SignBirthDayYear = true
+                        this.SignupValidation.SignupBirthdayYearResult = ""
+                    }
+                    // 月バリデーション
+                    if (this.form.account_month.length > 2) {
+                        this.SignupValidation.SignupBirthdayMonthResult = "月：文字数オーバー"
+                        console.log(this.SignupValidation.SignupBirthdayMonthResult)
+                        this.errors.push(this.SignupValidation.SignupBirthdayMonthResult)
+                        SignBirthDayMonth = false
+                    } else if (!this.form.account_month) {
+                        this.SignupValidation.SignupBirthdayMonthResult = ""
+                        console.log(this.SignupValidation.SignupBirthdayMonthResult)
+                        this.errors.push(this.SignupValidation.SignupBirthdayMonthResult)
+                        SignBirthDayMonth = false
+                    }
+                    else if (!(this.form.account_month > 0 && this.form.account_month < 13)) {
+                        this.SignupValidation.SignupBirthdayMonthResult = "月：月数制限エラー"
+                        console.log(this.SignupValidation.SignupBirthdayMonthResult)
+                        this.errors.push(this.SignupValidation.SignupBirthdayMonthResult)
+                        SignBirthDayMonth = false
+                    } else {
+                        SignBirthDayMonth = true
+                        this.SignupValidation.SignupBirthdayMonthResult = ""
+                    }
+                    // 日バリデーション
+                    if (this.form.account_day.length > 2) {
+                        this.SignupValidation.SignupBirthdayDayResult = "日：文字数オーバー"
+                        console.log(this.SignupValidation.SignupBirthdayDayResult)
+                        this.errors.push(this.SignupValidation.SignupBirthdayDayResult)
+                        SignBirthDayDay = false
+                    } else if (!this.form.account_day) {
+                        this.SignupValidation.SignupBirthdayDayResult = ""
+                        console.log(this.SignupValidation.SignupBirthdayDayResult)
+                        this.errors.push(this.SignupValidation.SignupBirthdayDayResult)
+                        SignBirthDayDay = false
+                    }
+                    else if (!(this.form.account_day > 0 && this.form.account_day < EndDay)) {
+                        this.SignupValidation.SignupBirthdayDayResult = "日：日数制限エラー"
+                        console.log(this.SignupValidation.SignupBirthdayDayResult)
+                        console.log(this.form.account_day)
+                        this.errors.push(this.SignupValidation.SignupBirthdayDayResult)
+                        SignBirthDayDay = false
+                    } else {
+                        SignBirthDayDay = true
+                        this.SignupValidation.SignupBirthdayDayResult = ""
+                    }
                 }
 
 
@@ -455,7 +532,8 @@
 
                 //バリデーションをクリアした時にsign-up
                 if (SignMail === true && SignPass === true && SignName === true
-                    && SignBirthDay === true && SignWeight === true && SignHeight === true && SignLevel === true) {
+                    && SignBirthDay === true && SignBirthDayYear === true && SignBirthDayMonth === true
+                    && SignBirthDayDay === true && SignWeight === true && SignHeight === true && SignLevel === true) {
                     const check = await this.Data_post(this.form)
                     if (check !== 0){
                         //登録時
