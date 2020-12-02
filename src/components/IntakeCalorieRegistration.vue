@@ -4,15 +4,13 @@
             <h1 class="col-auto pt-4 pb-2">摂取カロリー入力</h1>
         </div>
         <!--日付選択-->
-        <v-date-picker v-model="selectedDate">
-            <template v-slot="{ inputValue, inputEvents }">
-                <input
-                        class="bg-white border px-2 py-1 rounded"
-                        :value="inputValue"
-                        v-on="inputEvents"
-                />
-            </template>
-        </v-date-picker>
+        <datepicker
+                v-model=selectedDate
+                :format="DatePickerFormat"
+                :language="ja"
+                :highlighted="highlighted"
+                :disabled-dates="disabledDates">
+        </datepicker>
         <!--リスト-->
         <table class="table table-hover mt-1 table-sm col-auto">
             <thead>
@@ -129,13 +127,12 @@
 
 <script>
     import inputMyModal from "./MyModal"
-    import Vue from 'vue'
-    import VCalendar from 'v-calendar'
-    Vue.use(VCalendar)
+    import Datepicker from "vuejs-datepicker";
+    import {ja} from 'vuejs-datepicker/dist/locale'
 
     export default {
         name: "IntakeCalorieRegistration",
-        components: { inputMyModal },
+        components: { inputMyModal,Datepicker  },
         data(){
             return{
                 //モーダル
@@ -152,8 +149,20 @@
                 addItem: [],
                 //通信用
                 foodArray:[],
-                //カレンダー用
+                //日付選択
                 selectedDate: new Date(),
+                //日付形式
+                DatePickerFormat: 'yyyy-MM-dd',
+                //土日を強調表示
+                highlighted: {
+                    days: [6, 0],
+                },
+                //日本語設定
+                ja:ja,
+                //日付制約
+                disabledDates: {
+                    from: new Date(),
+                },
                 //分類
                 genreBox:[],
                 foodBox:[],
