@@ -4,11 +4,12 @@
             <h1 class="col-auto pt-4 pb-2">消費カロリー入力</h1>
         </div>
         <!--日付選択-->
-        {{selectedDate}}
         <datepicker
             v-model=selectedDate
             :format="DatePickerFormat"
-            :language="ja">
+            :language="ja"
+            :highlighted="highlighted"
+            :disabled-dates="disabledDates">
         </datepicker>
         <!--リスト-->
         <table class="table table-hover mt-1 table-sm col-auto">
@@ -149,8 +150,18 @@
                 trainingArray:[],
                 //日付選択
                 selectedDate: new Date(),
+                //日付形式
                 DatePickerFormat: 'yyyy-MM-dd',
+                //土日を強調表示
+                highlighted: {
+                    days: [6, 0],
+                },
+                //日本語設定
                 ja:ja,
+                //日付制約
+                disabledDates: {
+                    from: new Date(),
+                },
                 //分類
                 genreBox:[],
                 trainingBox:[],
