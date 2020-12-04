@@ -149,8 +149,6 @@
                 addItem: [],
                 //通信用
                 foodArray:[],
-                //カレンダー用
-                selectedDataResult:"",
                 //日付選択
                 selectedDate: new Date(),
                 //日付形式
@@ -185,7 +183,7 @@
             //直接入力のモーダルを開く
             openInputModal(){
                 if(!this.selectedDate){
-                    alert("エラーが発生しました。もう一度やり直してください")
+                    alert("日付呼び出しに失敗しました。もう一度やり直してください")
                 }
                 else {
                     this.inputModal = true
@@ -246,12 +244,6 @@
                 else {
                     this.inputCalorieResult=""
                     inputCalorieCheck = true
-                }
-                // 日付未入力
-                if(!this.selectedDate){
-                    this.selectedDataResult="日付を選択してください"
-                }else{
-                    this.selectedDataResult=""
                 }
 
                 //日付加工

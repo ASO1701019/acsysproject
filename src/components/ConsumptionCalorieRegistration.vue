@@ -181,7 +181,12 @@
             },
             //直接入力のモーダルを開く
             openInputModal(){
-                this.inputModal = true
+                if(!this.selectedDate){
+                    alert("日付呼び出しに失敗しました。。もう一度やり直してください")
+                }
+                else {
+                    this.inputModal = true
+                }
             },
             //直接入力のモーダルを開く
             openSelectModal(){
