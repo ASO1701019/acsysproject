@@ -78,9 +78,9 @@
             </p>
 
             <!-- 目標体重 -->
-            <h4 class="text-success border-bottom border-success mt-5 mb-5 col-11 text-left mx-auto">活用目的</h4>
+            <h4 class="text-success border-bottom border-success mt-5 mb-5 col-11 text-left mx-auto">利用目的</h4>
             <div class="form- row mx-auto mt-5">
-                <label id="purpose" class="col-3 col-form-label text-right">目標体重</label><p>
+                <label id="purpose" class="col-3 col-form-label text-right">利用目的</label><p>
                 <div class="form-check mt-2 ml-3 col-2">
                     <input class="form-check-input" type="radio" name="purpose" id="increase" value=1 v-model="form.account_purpose">
                     <label class="form-check-label" for="male">増加</label>
@@ -240,10 +240,7 @@
                     account_address: array.account_address,
                     account_pass: array.account_pass,
                     account_token:newToken,
-
-                    //体重の目標
                     account_purpose: array.account_purpose,
-
                 }
                 const json_data = JSON.stringify(this.post_data)
                 await fetch(URL, {
@@ -273,12 +270,9 @@
                     return 0
                 }
             },
+
             //------------------------------------------------------------------------------
-
-
             //-----------------------------バリデーション-------------------------------------
-
-
             checkForm:async function (event) {
                 let SignMail
                 let SignPass
@@ -316,7 +310,6 @@
                     SignMail = true
                     this.SignupValidation.SignupAddressResult = ""
                 }
-
 
                 // パスワードの入力フォームのバリデーション
                 if (!this.form.account_pass) {
@@ -370,7 +363,6 @@
                     this.SignupValidation.SignupNameResult = ""
                 }
 
-
                 // 生年月日の入力フォームのバリデーション
                 if (!this.form.account_year && !this.form.account_year && !this.form.account_month && !this.form.account_day){
                     this.SignupValidation.SignupBirthdayResult = ""
@@ -413,7 +405,6 @@
                     SignBirthDay = false
                 }
                 else {
-
                     SignBirthDay = true
                     this.SignupValidation.SignupBirthdayResult = ""
 
@@ -481,7 +472,6 @@
                         this.SignupValidation.SignupBirthdayDayResult = ""
                     }
                 }
-
 
                 // 体重の入力フォームのバリデーション
                 if (!this.form.account_weight) {
@@ -563,7 +553,7 @@
                         //登録時
                         this.$store.commit('tokenUpdate',check)
                         await this.$router.replace("/savecalorie")
-                    }else {　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+                    }else {
                         //エラーや存在しなかった場合
                         console.log("アカウントが存在しないもしくわエラー")
                         alert("エラーが発生しました。もう一度やり直してください")

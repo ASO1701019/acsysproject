@@ -26,9 +26,9 @@
 <!--                {{ ChangeValidation.ChangePasswordResult }}-->
 <!--            </p>-->
 
-            <h4 class="text-success border-bottom border-success mt-5 mb-5 col-11 text-left mx-auto">体重の目標</h4>
+            <h4 class="text-success border-bottom border-success mt-5 mb-5 col-11 text-left mx-auto">利用目的</h4>
             <div class="form-group row mx-auto mt-5">
-                <label id="purpose" class="col-3 col-form-label text-right">体重の目標</label><p>
+                <label id="purpose" class="col-3 col-form-label text-right">利用目的</label><p>
                 <div class="form-check mt-2 ml-3 col-2">
                     <input class="form-check-input" type="radio" name="purpose" id="increase" value=1 v-model="form.account_purpose">増加
                 </div>
@@ -138,13 +138,9 @@
             },
             //----------------------------データ保存---------------------------------------
             Data_post:async function (array) {
-
-
                 this.post_data = {
-
                     //目的のラジオボタン
                     account_purpose:array.account_purpose,
-
                     account_height: Number(array.account_height),
                     account_weight: Number(array.account_weight),
                     account_level: array.account_level,
@@ -176,19 +172,12 @@
                 return this.ChangeResult
             },
             //------------------------------------------------------------------------------
-
-
             //-----------------------------バリデーション-------------------------------------
-
-
             checkForm:async function (event) {
                 let SignWeight
                 let SignHeight
                 let SignLevel
                 let re2 = /^[0-9]+$/
-
-
-
 
                 // 体重の入力フォームのバリデーション
                 if ("" === this.form.account_weight) {
