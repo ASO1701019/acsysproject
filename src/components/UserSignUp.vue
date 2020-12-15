@@ -77,6 +77,25 @@
                 {{ SignupValidation.SignupPasswordResult }}
             </p>
 
+            <!-- 目標体重 -->
+            <h4 class="text-success border-bottom border-success mt-5 mb-5 col-11 text-left mx-auto">活用目的</h4>
+            <div class="form- row mx-auto mt-5">
+                <label id="purpose" class="col-3 col-form-label text-right">目標体重</label><p>
+                <div class="form-check mt-2 ml-3 col-2">
+                    <input class="form-check-input" type="radio" name="purpose" id="increase" value=1 v-model="form.account_purpose">
+                    <label class="form-check-label" for="male">増加</label>
+                </div>
+                <div class="form-check mt-2 col-2">
+                    <input class="form-check-input" type="radio" name="purpose" id="decrease" value=0 v-model="form.account_purpose" checked="checked">
+                    <label class="form-check-label" for="female">減少</label>
+                </div>
+            </div>
+            <p class="text-danger text-center h5 col-9">
+                {{ SignupValidation.SignupPasswordResult }}
+            </p>
+
+
+
             <h4 class="text-success border-bottom border-success mt-5 mb-5 col-11 text-left mx-auto">身体情報</h4>
 
             <!--身長 -->
@@ -156,6 +175,7 @@
                 account_level: '',
                 account_address: '',
                 account_pass: '',
+                account_purpose:'',
             }
             return {
                 form: {
@@ -170,6 +190,7 @@
                     account_level: '',
                     account_address: '',
                     account_pass: '',
+                    account_purpose:0,
                 },
                 post_data: post_data,
                 input_data: [],
@@ -219,6 +240,9 @@
                     account_address: array.account_address,
                     account_pass: array.account_pass,
                     account_token:newToken,
+
+                    //体重の目標
+                    account_purpose: array.account_purpose,
 
                 }
                 const json_data = JSON.stringify(this.post_data)
@@ -539,7 +563,7 @@
                         //登録時
                         this.$store.commit('tokenUpdate',check)
                         await this.$router.replace("/savecalorie")
-                    }else {
+                    }else {　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
                         //エラーや存在しなかった場合
                         console.log("アカウントが存在しないもしくわエラー")
                         alert("エラーが発生しました。もう一度やり直してください")

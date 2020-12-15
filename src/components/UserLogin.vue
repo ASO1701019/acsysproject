@@ -27,6 +27,8 @@
                 </div>
             </form>
             <div class="text-center mt-3" >
+                <router-link to="/reissue" class="h5 text-success">パスワードをお忘れですか？</router-link>
+                <a>・</a>
                 <router-link to="/signup" class="h5 text-success">アカウントの新規作成</router-link>
             </div>
         </section>
